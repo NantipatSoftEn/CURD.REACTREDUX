@@ -12,8 +12,7 @@ class ShowComment extends Component {
           <Comment
             key={comment.id}
             comment={comment}
-        
-     
+            dispatch={this.props.dispatch}
           />
         ))}
       </div>

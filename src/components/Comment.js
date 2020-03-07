@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Toast, ToastBody, ToastHeader, Button, ButtonGroup } from "reactstrap";
 import { delComment } from "../actions";
-const Comment = ({comment}) => (
+const Comment = ({comment, dispatch}) => (
 
   <div className="p-3 my-2 rounded">
     <Toast>
@@ -12,7 +12,7 @@ const Comment = ({comment}) => (
       <ToastBody>{comment.message}</ToastBody>
       <ButtonGroup>
 
-        <Button color="danger" onClick={()=> comment.dispatch(delComment(comment.id))}>Delete</Button>
+        <Button color="danger" onClick={()=> dispatch(delComment(comment.id))}>Delete</Button>
         <Button color="warning">Edit</Button>
       </ButtonGroup>
     </Toast>
