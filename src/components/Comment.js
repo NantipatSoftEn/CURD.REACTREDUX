@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Toast, ToastBody, ToastHeader, Button, ButtonGroup } from "reactstrap";
-import { delComment } from "../actions";
+import { delComment,editComment } from "../actions";
+import EditForm from './EditForm'
 const Comment = ({comment, dispatch}) => (
 
   <div className="p-3 my-2 rounded">
@@ -13,7 +14,7 @@ const Comment = ({comment, dispatch}) => (
       <ButtonGroup>
 
         <Button color="danger" onClick={()=> dispatch(delComment(comment.id))}>Delete</Button>
-        <Button color="warning">Edit</Button>
+        <Button color="warning" onClick={()=> dispatch(editComment(comment.id))}>Edit</Button>
       </ButtonGroup>
     </Toast>
   </div>

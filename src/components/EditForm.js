@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addComment } from "../actions";
 import {
   Col,
   Button,
@@ -10,20 +9,17 @@ import {
   Input,
   FormText
 } from "reactstrap";
-
-class CommentForm extends Component {
+import {updateComment} from '../actions/'
+export class EditForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    const name = this.getName.value;
-    const message = this.getMessage.value;
+    const newname = this.getName.value;
+    const newmessage = this.getMessage.value;
     const data = {
-      id: new Date(),
-      name,
-      message,
-      editing:false
+        newname,
+        newmessage
     };
-    console.log(data);
-    this.props.dispatch(addComment(data));
+    this.props.dispatch(updateComment(this.props.comment.id,data))
   };
   render() {
     return (
@@ -35,7 +31,8 @@ class CommentForm extends Component {
               Name
             </Label>
             <Col sm={10}>
-              <Input type="text" innerRef={node => (this.getName = node)} />
+              <Input type="text" innerRef={node => (this.getName = node)} 
+              defaultValue={this.props.comment.name}/>
             </Col>
           </FormGroup>
           <FormGroup>
@@ -46,11 +43,12 @@ class CommentForm extends Component {
               <Input
                 type="textarea"
                 innerRef={node => (this.getMessage = node)}
+                defaultValue={this.props.comment.message}
               />
             </Col>
           </FormGroup>
           <FormGroup>
-            <Button>Click</Button>
+            <Button>Update</Button>
           </FormGroup>
         </form>
       </div>
@@ -58,4 +56,8 @@ class CommentForm extends Component {
   }
 }
 
-export default connect()(CommentForm);
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);

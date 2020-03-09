@@ -24,5 +24,20 @@ export const delComment = id => {
   return {
     type: "DELETE_COMMENT",
     id
-  }
-}
+  };
+};
+
+export const editComment = id => {
+  return {
+    type: "EDIT_COMMENT",
+    id
+  };
+};
+
+export const updateComment = (id,data) => {
+  return {
+    type: "UPDATE_COMMENT",
+    id,
+    data
+  };
+};
